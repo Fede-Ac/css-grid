@@ -1,0 +1,118 @@
+/*Reset de estilos por defecto*/
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background:
+    linear-gradient(-135deg, rgb(34, 76, 152) 10%, transparent),
+    repeating-linear-gradient(45deg, rgba(34, 76, 152, 1) 0%, rgba(31, 48, 94, 0.6) 5%, transparent 5%, transparent 10%),
+    repeating-linear-gradient(-45deg, rgba(34, 76, 152, 0.4) 0%, rgba(31, 48, 94, 0.5) 5%, transparent 5%, transparent 10%);
+    background-color: rgba(34, 76, 152, 0.25);
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+/* header */
+.title h1 {
+    padding: 20px 0;
+    text-align: center;
+    font-size: 4vh;
+}
+
+.container {
+    background: lightblue;
+    width: 90%;
+    max-width: 1000px;
+    margin: 1.6em auto;
+    /*"activar" grid*/
+    display: grid;
+    gap: 1.6em;
+    grid-template-columns: repeat(5, 1fr);
+}
+
+.container > .header,
+.container > .content,
+.container > .sidebar,
+.container > footer
+.container > div {
+    background: #fff;
+    padding: 20px;
+    border: 1px solid black;
+}
+
+.container .header,
+.container .footer {
+    grid-column: 1/6; /* indicar columnas que abarca inicio/fin*/
+    
+    background: grey;
+    color: black;
+}
+
+.container > .content {
+    grid-column: span 3; /*span indica columnas a abarcar*/
+}
+
+.content > .article {
+    background: grey;
+    padding: 20px;
+    margin-top: 5px;
+    color: white;
+}
+
+.content .article h1,
+.content .article p {
+    padding: 10px;
+}
+
+.container > .sidebar {
+    /*span indica columnas a abarcar, como 3 + 2 = 5 , abarca el total de columnas del contenedor*/
+    grid-column: span 2; 
+    background: grey;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.container .sidebar img {
+    width: 100%;
+    margin-top: 5px;
+}
+
+.container > .others-post {
+    background: grey;
+    color: white;
+    height: 180px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.5s ease; /*animacion para el hover*/
+}
+
+/*cuando el cursos se pone encima*/
+.container > .others-post:hover {
+    cursor: pointer;
+    color: black;
+    background: white;
+}
+
+/*responsive small*/
+@media screen and (max-width: 768px) {
+    .header {
+        text-align: center;
+    }
+
+    .container .content {
+        grid-column: 1/-1; /*el 1/-1 es para que abarque todo*/
+    }
+
+    .container .sidebar {
+        grid-column: 1/-1;
+    }
+
+    .container .others-post {
+        grid-column: 1/-1;
+    }
+}
