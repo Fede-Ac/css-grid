@@ -25,9 +25,7 @@ body {
 }
 
 .container {
-
     width: 100%;
-    margin: 1em auto;
     /*"activar" grid*/
     display: grid;
     gap: 0.3em;/*separación entre partes*/
@@ -53,9 +51,6 @@ body {
     background-repeat:no-repeat;
     color: black;
     height: 500px;
-
-
-
 }
 
 .container .header .filtro-header {
@@ -78,10 +73,9 @@ body {
 }
 
 .container > .content {
-    margin: 7px;
     grid-column: span 4; /*span indica columnas a abarcar*/
 }
-
+/*articulo*/
 .content > .article {
     background: lightblue;
     padding: 20px;
@@ -90,14 +84,14 @@ body {
 }
 
 .content .article:hover {
-    opacity: 80%;
+    opacity: 70%;
 }
 
 .content .article h1,
 .content .article p {
     padding: 10px;
 }
-
+/*galeria*/
 .container .galery {
     
     margin-top: 7px;
@@ -105,16 +99,28 @@ body {
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));;
     grid-template-rows: 1;
     justify-items: center;
+    align-items: center;
 }
 
-.container .galery > img {
+.container .galery .galery-effect:hover {
+    border-radius: 35px;
+    background-image: radial-gradient(circle at 50% 50%, #dcffff 0, #bff3ff 16.67%, #a0e4ff 33.33%, #7dd3fd 50%, #56c2f7 66.67%, #1cb2f2 83.33%, #00a3ee 100%);
+}
+
+.container .galery img {
     margin: 5px;
     border-radius: 50%;
+    transition: all 0.4s ease;
+
+}
+
+.container .galery img:hover {
+    transform: scale(0.9, 0.9);
 }
 
 .container > .sidebar {
     /*span indica columnas a abarcar, como 3 + 2 = 5 , abarca el total de columnas del contenedor*/
-    
+
     grid-column: span 1; 
     display: grid;
    /*  grid-template-columns: 1;
@@ -153,25 +159,32 @@ body {
 /**/
 
 .container > .others-post {
-    margin: 15px;
+    margin: 20px;
     color: white;
     height: 180px;
-    display: flex;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));;
+    grid-template-rows: 1;
+    justify-items: center;
     align-items: center;
-    justify-content: center;
     transition: all 0.5s ease; /*animacion para el hover*/
 }
 
 /*cuando el cursos se pone encima*/
 .container > .others-post > img:hover {
     cursor: pointer;
-    zoom: 110%;
+    transform: scale(1.1, 1.1);
 }
 
+.container .footer .footer-filter {
+    background: white;
+}
 /**/
 
 .info {
     background: lightcyan;
+    border-radius: 0;
+    margin-top: 5px;
     display: grid;
     grid-template-columns: repeat(2,1fr);/*crea la base para separar columnas*/
     padding: 10px;
@@ -193,8 +206,8 @@ body {
 }
 
 
-/*responsive small*/
-@media screen and (max-width: 768px) {
+/*responsive extra small*/
+@media only screen and (max-width: 600px) {
     .header {
         text-align: center;
     }
@@ -210,4 +223,104 @@ body {
     .container .others-post {
         grid-column: 1/-1;
     }
+}
+
+/*responsive small*/
+@media only screen and (min-width: 600px) {
+    .header {
+        text-align: center;
+    }
+
+    .container .content {
+        grid-column: 1/-1; /*el 1/-1 es para que abarque todo*/
+    }
+
+    .container .sidebar {
+        grid-column: 1/-1;
+    }
+
+    .container .others-post {
+        grid-column: 1/-1;
+    }
+}
+
+/*responsive medium*/
+@media screen and (min-width: 768px) {
+    .header {
+        text-align: center;
+    }
+
+    .container .content {
+        grid-column: 1/-1; /*el 1/-1 es para que abarque todo*/
+    }
+
+    .container .sidebar {
+        grid-column: 1/-1;
+    }
+
+    .container .others-post {
+        grid-column: span 2;
+    }
+}
+
+/*responsive large*/
+@media only screen and (min-width: 992px) {
+    .header {
+        text-align: center;
+    }
+
+    .container .content {
+        grid-column: 1/5; /*el 1/-1 es para que abarque todo*/
+    }
+
+    .container .sidebar {
+        grid-column: 5/6;
+    }
+
+    .container .others-post {
+        grid-column: span 2;
+    }
+}
+
+/*responsive extra large*/
+@media only screen and (min-width: 1200px) and (max-width: 1600px) {
+    .header {
+        text-align: center;
+    }
+
+    .container .content {
+        grid-column: 1/5; /*el 1/-1 es para que abarque todo*/
+    }
+
+    .container .sidebar {
+        grid-column: 5/6;
+    }
+
+    .container .others-post {
+        grid-column: span 1;
+    }
+
+@media screen and (min-width: 1601px) {
+    .header {
+        text-align: center;
+    }
+
+    .container {
+        width: 1600px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .container .content {
+        grid-column: 1/5; /*el 1/-1 es para que abarque todo*/
+    }
+
+    .container .sidebar {
+        grid-column: 5/6;
+    }
+
+    .container .others-post {
+        grid-column: 1/-1;
+    }
+}
 }
