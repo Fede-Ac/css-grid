@@ -20,6 +20,10 @@ body {
     font-size: 4vh;
 }
 
+.container .content div > h1::before {
+    transform: scale(2, 2);
+}
+
 .container {
 
     width: 100%;
@@ -40,13 +44,37 @@ body {
     border: 1px dotted black;
 }
 
-.container .header,
-.container .footer {
-    margin: 7px;
+.container .header {
+    border-radius: 0;
+    padding: 0;
+    /*display: grid; si creas otra grilla usa esta y no al del fondo*/
     grid-column: 1/6; /* indicar columnas que abarca inicio/fin*/
-    
-    background: white;
+    background-image: url(img/fondo-avion.jpg);
+    background-repeat:no-repeat;
     color: black;
+    height: 500px;
+
+
+
+}
+
+.container .header .filtro-header {
+    /*difuminado*/
+    display: grid;
+    backdrop-filter: blur(3px);
+    background: rgba(164, 219, 235, 0.364);
+    /*ajustes para que abarque todo*/
+    border-radius: 0;
+    height: 100%;
+    grid-column: 1fr; 
+    justify-content: center;
+    align-items: center;
+}
+
+.container .footer {
+    border-radius: 0;
+    grid-column: 1/6; /* indicar columnas que abarca inicio/fin*/
+
 }
 
 .container > .content {
@@ -59,6 +87,10 @@ body {
     padding: 20px;
     margin-top: 5px;
     border-radius: 10px;
+}
+
+.content .article:hover {
+    opacity: 80%;
 }
 
 .content .article h1,
@@ -81,31 +113,44 @@ body {
 }
 
 .container > .sidebar {
-    margin: 5px;
     /*span indica columnas a abarcar, como 3 + 2 = 5 , abarca el total de columnas del contenedor*/
+    
     grid-column: span 1; 
-    background: grey;
-    color: white;
-/*     display: grid;
-    grid-template-columns: 1;
-    grid-template-rows: repeat(auto-fit, minmax(250px, 1fr)); */
+    display: grid;
+   /*  grid-template-columns: 1;
+    grid-template-rows: repeat(auto-fit, minmax(250px, 1fr)); abarcar maximo de la pantala con un minimo de 250px
+    justify-items: center;
+    align-content: center; */
+
+    /*Se puede aplicar flex y grid, son compatibles, pero no hacerlo en el mismo elemento*/
     display: flex;
-    justify-content: center;
-    align-items: center;
     flex-direction: column;
 }
 
 .container .sidebar div {
     width: 100%;
     height: 100%;
+    /*Grid y centrando en ambos ejes*/
+    display: grid;
+    align-items: center;
+    justify-items: center;
 }
 
 .container .sidebar img {
     width: 70%;
     object-fit: cover;/*ajusta la imagen para que quede lo mejor posible en el espacio que tiene*/
-    margin-top: 15px;
     padding: 5px;
+    /*align-self: center;*/
+    transition: all 0.3s ease; /*Transición para que la transformacion sea más fluida*/
 }
+
+.container .sidebar img:hover {
+    cursor: pointer;
+    transform: scale(1.1,1.1);/*similar a zoom*/
+    transform: translate(3%, 3%);
+}
+
+/**/
 
 .container > .others-post {
     margin: 15px;
@@ -118,10 +163,12 @@ body {
 }
 
 /*cuando el cursos se pone encima*/
-.container > .others-post:hover {
+.container > .others-post > img:hover {
     cursor: pointer;
     zoom: 110%;
 }
+
+/**/
 
 .info {
     background: lightcyan;
