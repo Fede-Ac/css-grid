@@ -6,21 +6,26 @@
 
 body {
     background:
-    linear-gradient(-135deg, rgb(34, 76, 152) 10%, transparent),
-    repeating-linear-gradient(45deg, rgba(34, 76, 152, 1) 0%, rgba(31, 48, 94, 0.6) 5%, transparent 5%, transparent 10%),
-    repeating-linear-gradient(-45deg, rgba(34, 76, 152, 0.4) 0%, rgba(31, 48, 94, 0.5) 5%, transparent 5%, transparent 10%);
+        linear-gradient(-135deg, rgb(34, 76, 152) 10%, transparent),
+        repeating-linear-gradient(45deg, rgba(34, 76, 152, 1) 0%, rgba(31, 48, 94, 0.6) 5%, transparent 5%, transparent 10%),
+        repeating-linear-gradient(-45deg, rgba(34, 76, 152, 0.4) 0%, rgba(31, 48, 94, 0.5) 5%, transparent 5%, transparent 10%);
     background-color: rgba(34, 76, 152, 0.25);
     font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
 /* header */
+.title {
+    background-color: lightblue;
+    border-radius: 0;
+}
+
 .title h1 {
     padding: 20px 0;
     text-align: center;
     font-size: 4vh;
 }
 
-.container .content div > h1::before {
+.container .content div>h1::before {
     transform: scale(2, 2);
 }
 
@@ -28,27 +33,30 @@ body {
     width: 100%;
     /*"activar" grid*/
     display: grid;
-    gap: 0.3em;/*separación entre partes*/
-    grid-template-columns: repeat(5, 1fr);/*crea 5 columnas con 1 fracion de separacion*/
+    gap: 0.3em;
+    /*separación entre partes*/
+    grid-template-columns: repeat(5, 1fr);
+    /*crea 5 columnas con 1 fracion de separacion*/
 }
 
-.container > .header,
-.container > .content,
-.container > .sidebar,
-.container > footer
-.container > div {
+.container>.header,
+.container>.content,
+.container>.sidebar,
+.container>footer .container>div {
     background: #fff;
     padding: 5px;
-    border: 1px dotted black;
+    ;
 }
 
 .container .header {
     border-radius: 0;
     padding: 0;
     /*display: grid; si creas otra grilla usa esta y no al del fondo*/
-    grid-column: 1/6; /* indicar columnas que abarca inicio/fin*/
+    grid-column: 1/6;
+    /* indicar columnas que abarca inicio/fin*/
     background-image: url(img/fondo-avion.jpg);
-    background-repeat:no-repeat;
+    background-repeat: no-repeat;
+    background-position: center;
     color: black;
     height: 500px;
 }
@@ -61,22 +69,19 @@ body {
     /*ajustes para que abarque todo*/
     border-radius: 0;
     height: 100%;
-    grid-column: 1fr; 
+    grid-column: 1fr;
+    /*centrado con grid*/
     justify-content: center;
     align-items: center;
 }
 
-.container .footer {
-    border-radius: 0;
-    grid-column: 1/6; /* indicar columnas que abarca inicio/fin*/
-
+.container>.content {
+    /*span indica columnas a abarcar*/
+    grid-column: span 4;
 }
 
-.container > .content {
-    grid-column: span 4; /*span indica columnas a abarcar*/
-}
 /*articulo*/
-.content > .article {
+.content>.article {
     background: lightblue;
     padding: 20px;
     margin-top: 5px;
@@ -91,15 +96,20 @@ body {
 .content .article p {
     padding: 10px;
 }
-/*galeria*/
-.container .galery {
-    
-    margin-top: 7px;
+
+/*creadores*/
+
+.container .creators {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));;
-    grid-template-rows: 1;
+    margin-top: 15px;
+}
+
+.container .galery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     justify-items: center;
     align-items: center;
+    margin-top: 3vw;
 }
 
 .container .galery .galery-effect:hover {
@@ -109,8 +119,9 @@ body {
 
 .container .galery img {
     margin: 5px;
+    padding: 5px;
     border-radius: 50%;
-    transition: all 0.4s ease;
+    transition: all 0.7s ease;
 
 }
 
@@ -118,19 +129,11 @@ body {
     transform: scale(0.9, 0.9);
 }
 
-.container > .sidebar {
+.container>.sidebar {
     /*span indica columnas a abarcar, como 3 + 2 = 5 , abarca el total de columnas del contenedor*/
-
-    grid-column: span 1; 
+    grid-column: span 1;
     display: grid;
-   /*  grid-template-columns: 1;
-    grid-template-rows: repeat(auto-fit, minmax(250px, 1fr)); abarcar maximo de la pantala con un minimo de 250px
-    justify-items: center;
-    align-content: center; */
-
     /*Se puede aplicar flex y grid, son compatibles, pero no hacerlo en el mismo elemento*/
-    display: flex;
-    flex-direction: column;
 }
 
 .container .sidebar div {
@@ -143,42 +146,60 @@ body {
 }
 
 .container .sidebar img {
-    width: 70%;
-    object-fit: cover;/*ajusta la imagen para que quede lo mejor posible en el espacio que tiene*/
+    width: 80%;
+    max-width: 250px;
+    max-height: 250px;
+    margin-top: 20px;
+    object-fit: cover;
+    /*ajusta la imagen para que quede lo mejor posible en el espacio que tiene*/
     padding: 5px;
     /*align-self: center;*/
-    transition: all 0.3s ease; /*Transición para que la transformacion sea más fluida*/
+    transition: all 0.3s ease;
+    /*Transición para que la transformacion sea más fluida*/
 }
 
 .container .sidebar img:hover {
     cursor: pointer;
-    transform: scale(1.1,1.1);/*similar a zoom*/
+    transform: scale(1.1, 1.1);
+    /*similar a zoom*/
     transform: translate(3%, 3%);
 }
 
 /**/
-
-.container > .others-post {
-    margin: 20px;
-    color: white;
-    height: 180px;
+.container .others-post {
+    /*abarcar toda el area de forma adaptativa*/
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));;
-    grid-template-rows: 1;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-column: 1/6;
+
+    gap: 5px;
     justify-items: center;
     align-items: center;
-    transition: all 0.5s ease; /*animacion para el hover*/
+    margin: 15px;
+    transition: all 0.5s ease;
+    /*animacion para el hover*/
+}
+
+.container .others-post img {
+    margin: 5px;
 }
 
 /*cuando el cursos se pone encima*/
-.container > .others-post > img:hover {
+.container>.others-post>img:hover {
     cursor: pointer;
     transform: scale(1.1, 1.1);
 }
 
+.container .footer {
+    /* indicar LINEAS de columnas que abarca inicio/fin*/
+    grid-column: 1/6;
+}
+
 .container .footer .footer-filter {
     background: white;
+    padding: 4px;
 }
+
 /**/
 
 .info {
@@ -186,14 +207,16 @@ body {
     border-radius: 0;
     margin-top: 5px;
     display: grid;
-    grid-template-columns: repeat(2,1fr);/*crea la base para separar columnas*/
-    padding: 10px;
+    grid-template-columns: repeat(2, 1fr);
+    /*crea la base para separar columnas*/
     
+
 }
 
 .info .info-org {
-    grid-column: span 1;/*seleccionas cuantas columnas usar de la base*/
-    
+    grid-column: span 1;
+    /*seleccionas cuantas columnas usar de la base*/
+
 }
 
 .info .info-local {
@@ -213,26 +236,23 @@ body {
     }
 
     .container .content {
-        grid-column: 1/-1; /*el 1/-1 es para que abarque todo*/
+        grid-column: 1/-1;
+        /*el 1/-1 es para que abarque todo*/
     }
 
     .container .sidebar {
         grid-column: 1/-1;
     }
 
-    .container .others-post {
-        grid-column: 1/-1;
-    }
-
     .info {
-        grid-template-columns:1fr;
+        grid-template-columns: 1fr;
     }
 
     .info .titulo-footer {
         grid-column: span 1;
         margin: 10px;
     }
-    
+
 }
 
 /*responsive small*/
@@ -242,14 +262,11 @@ body {
     }
 
     .container .content {
-        grid-column: 1/-1; /*el 1/-1 es para que abarque todo*/
+        grid-column: 1/-1;
+        /*el 1/-1 es para que abarque todo*/
     }
 
     .container .sidebar {
-        grid-column: 1/-1;
-    }
-
-    .container .others-post {
         grid-column: 1/-1;
     }
 }
@@ -261,15 +278,12 @@ body {
     }
 
     .container .content {
-        grid-column: 1/-1; /*el 1/-1 es para que abarque todo*/
+        grid-column: 1/-1;
+        /*el 1/-1 es para que abarque todo*/
     }
 
     .container .sidebar {
         grid-column: 1/-1;
-    }
-
-    .container .others-post {
-        grid-column: span 2;
     }
 }
 
@@ -280,15 +294,12 @@ body {
     }
 
     .container .content {
-        grid-column: 1/5; /*el 1/-1 es para que abarque todo*/
+        grid-column: 1/5;
+        /*el 1/-1 es para que abarque todo*/
     }
 
     .container .sidebar {
         grid-column: 5/6;
-    }
-
-    .container .others-post {
-        grid-column: span 2;
     }
 }
 
@@ -299,50 +310,48 @@ body {
     }
 
     .container .content {
-        grid-column: 1/5; /*el 1/-1 es para que abarque todo*/
+        grid-column: 1/5;
+        /*el 1/-1 es para que abarque todo*/
     }
 
     .container .sidebar {
         grid-column: 5/6;
     }
 
-    .container .others-post {
-        grid-column: span 2;
-    }
+    @media screen and (min-width: 1600px) {
+        .title {
+            width: 1600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
 
-@media screen and (min-width: 1600px) {
-    .title {
-        width: 1600px;
-        margin-left: auto;
-        margin-right: auto;
-    }
+        .header {
+            text-align: center;
+        }
 
-    .header {
-        text-align: center;
-    }
+        .container {
+            width: 1600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
 
-    .container {
-        width: 1600px;
-        margin-left: auto;
-        margin-right: auto;
-    }
+        .container .content {
+            grid-column: 1/5;
+            /*el 1/-1 es para que abarque todo*/
+        }
 
-    .container .content {
-        grid-column: 1/5; /*el 1/-1 es para que abarque todo*/
-    }
+        .container .sidebar {
+            grid-column: 5/6;
+        }
 
-    .container .sidebar {
-        grid-column: 5/6;
-    }
+        .container .galery {
+            margin-top: 7%;
+        }
 
-    .container .others-post {
-        grid-column: span 1;
+        .info {
+            width: 1600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
     }
-
-    .info {
-        width: 1600px;
-        margin-left: auto;
-        margin-right: auto;
-    }
-}
 }
